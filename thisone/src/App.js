@@ -3,11 +3,13 @@ import React from 'react';
 // import Logout from './user/Logout';
 // import Register from './user/Register';
 // import UserBar from './user/UserBar';
-import Post from './post/Post';
+// import Post from './post/Post';
+import CreatePost from './post/CreatePost';
 
 export default function App() {
 
-  return <Post title="Hooked" content="Stuck" author="Will Sokolowski" />
+    return <CreatePost />
+  // return <Post title="Hooked" content="Stuck" author="Will Sokolowski" />
 
   // return <UserBar />
 
