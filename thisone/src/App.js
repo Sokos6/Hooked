@@ -1,19 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import Login from './user/Login';
+import Logout from './user/Logout';
 
-function MyName() {
-  const [name, setName] = useState("");
+export default function App() {
+  return <Logout user="Will Sokolowski" />
 
-  function handleChange(evt) {
-    setName(evt.target.value);
-  }
-
-  return (
-    <div>
-      <h1>My Name is: {name}</h1>
-      <input type="text" value={name} onChange={handleChange} />
-    </div>
-  );
+  // <Login />
 }
-
-export default MyName;
