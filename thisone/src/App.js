@@ -17,7 +17,19 @@ const defaultPosts = [
   }
 ];
 
+function userReducer (state, action) {
+  switch (action.type) {
+      case 'LOGIN':
+      case 'REGISTER':
+          return action.username
 
+      case 'LOGOUT':
+          return ''
+
+      default:
+          throw new Error()
+  }
+}
 
 export default function App() {
   const [user, setUser] = useState("");
