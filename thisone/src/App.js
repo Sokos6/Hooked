@@ -33,9 +33,10 @@ export default function App() {
 }, [user])
 
   return (
-    <div>
+    <div style={{ padding: 8 }}>
     <Header text="Go Go React" />
     <div style={{ padding: 8 }}>
+      <Header text="Hooked" />
       <UserBar user={user} dispatch={dispatch} />
       <br />
       {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
