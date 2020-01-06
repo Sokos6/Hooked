@@ -4,7 +4,7 @@ import CreatePost from "./post/CreatePost";
 import UserBar from "./user/UserBar";
 import appReducer from "./reducers";
 import Header from "./Header";
-import { ThemeContext } from "./contexts";
+import { ThemeContext, StateContext } from "./contexts";
 import ChangeTheme from "./ChangeTheme";
 
 const defaultPosts = [
@@ -43,21 +43,25 @@ export default function App() {
   }, [user]);
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <div style={{ padding: 8 }}>
-        <Header text="Go Go React" />
-        <ChangeTheme theme={theme} setTheme={setTheme} />
-        <br />
+    <StateContext.Provider value={{ state, dispatch }}>
+      <ThemeContext.Provider value={theme}>
         <div style={{ padding: 8 }}>
-          <Header text="Hooked" />
-          <UserBar user={user} dispatch={dispatch} />
+          <Header text="Go Go React" />
+          <ChangeTheme theme={theme} setTheme={setTheme} />
           <br />
-          {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
-          <br />
-          <hr />
-          <PostList posts={posts} />
+          <div style={{ padding: 8 }}>
+            <Header text="Hooked" />
+            <UserBar />
+            <br />
+            {user && (
+              <CreatePost />
+            )}
+            <br />
+            <hr />
+            <PostList />
+          </div>
         </div>
-      </div>
-    </ThemeContext.Provider>
+      </ThemeContext.Provider>
+    </StateContext.Provider>
   );
 }
