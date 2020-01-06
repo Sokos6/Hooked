@@ -8,23 +8,27 @@ function userReducer (state, action) {
           return ''
 
       default:
-          throw new Error()
+          return state
   }
 }
 
-function postsReducer(state, action) {
-  switch(action.type) {
-    case 'CREATE_POST':
-      const newPost = { title : action.title, content: action.content, author: action.author}
-      return [ newPost, ...state]
-    default:
-      return state
+function postsReducer (state, action) {
+  switch (action.type) {
+      case 'FETCH_POSTS':
+        return action.posts
+
+      case 'CREATE_POST':
+          const newPost = { title: action.title, content: action.content, author: action.author }
+          return [ newPost, ...state ]
+
+      default:
+          return state
   }
 }
 
-export default function appReducer(state, action) {
+export default function appReducer (state, action) {
   return {
-    user: userReducer(state.user, action),
-    posts: postsReducer(state.posts, action)
+      user: userReducer(state.user, action),
+      posts: postsReducer(state.posts, action)
   }
 }
