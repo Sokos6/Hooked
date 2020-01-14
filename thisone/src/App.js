@@ -7,6 +7,7 @@ import Header from './Header'
 import { ThemeContext, StateContext } from './contexts'
 import ChangeTheme from './ChangeTheme'
 import appReducer from './reducers'
+import { useResource } from 'react-request-hook';
 
 export default function App () {
     const [ theme, setTheme ] = useState({
@@ -14,15 +15,24 @@ export default function App () {
         secondaryColor: 'coral'
     })
 
-    const [ state, dispatch ] = useReducer(appReducer, { user: '', posts: [] })
-    const { user } = state
+    const [ state, dispatch ] = useReducer(appReducer, { user: '', posts: [], error: '' })
+    const { user, error } = state
 
-    useEffect(() => {
-        fetch('/api/posts')
-            .then(result => result.json())
-            .then(posts => dispatch({ type: 'FETCH_POSTS', posts }))
-    }, [])
+  const [ posts, getPosts ] = useResource(() => ({
+    url: '/posts',
+    method: 'get'
+  }))
 
+  useEffect(getPosts, []);
+
+  useEffect(() => {
+    if (posts && posts.error) {
+      dispatch({ type: 'POSTS_ERROR' })
+    }
+    if (posts && posts.data) {
+      dispatch({ type: 'FETCH_POSTS', posts: posts.data.reverse() })
+    }
+  }, [posts])
     useEffect(() => {
         if (user) {
             document.title = `${user} - React Hooks Blog`
@@ -43,6 +53,7 @@ export default function App () {
                     {user && <CreatePost />}
                     <br />
                     <hr />
+                    {error && <b>{error}</b>}
                     <PostList />
                 </div>
             </ThemeContext.Provider>
