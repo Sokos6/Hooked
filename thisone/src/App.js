@@ -9,6 +9,7 @@ import ChangeTheme from './ChangeTheme'
 import appReducer from './reducers'
 import { useResource } from 'react-request-hook';
 import HeaderBar from './pages/HeaderBar';
+import HomePage from './pages/HomePage';
 
 export default function App () {
     const [ theme, setTheme ] = useState({
@@ -19,21 +20,7 @@ export default function App () {
     const [ state, dispatch ] = useReducer(appReducer, { user: '', posts: [], error: '' })
     const { user, error } = state
 
-  const [ posts, getPosts ] = useResource(() => ({
-    url: '/posts',
-    method: 'get'
-  }))
 
-  useEffect(getPosts, []);
-
-  useEffect(() => {
-    if (posts && posts.error) {
-      dispatch({ type: 'POSTS_ERROR' })
-    }
-    if (posts && posts.data) {
-      dispatch({ type: 'FETCH_POSTS', posts: posts.data.reverse() })
-    }
-  }, [posts])
     useEffect(() => {
         if (user) {
             document.title = `${user} - React Hooks Blog`
@@ -48,8 +35,7 @@ export default function App () {
                 <div style={{ padding: 8 }}>
                   <HeaderBar setTheme={setTheme} />
                     <hr />
-                    {error && <b>{error}</b>}
-                    <PostList />
+                    <HomePage />
                 </div>
             </ThemeContext.Provider>
         </StateContext.Provider>
