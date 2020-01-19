@@ -8,6 +8,7 @@ import { ThemeContext, StateContext } from './contexts'
 import ChangeTheme from './ChangeTheme'
 import appReducer from './reducers'
 import { useResource } from 'react-request-hook';
+import HeaderBar from './pages/HeaderBar';
 
 export default function App () {
     const [ theme, setTheme ] = useState({
@@ -45,15 +46,7 @@ export default function App () {
         <StateContext.Provider value={{ state, dispatch }}>
             <ThemeContext.Provider value={theme}>
                 <div style={{ padding: 8 }}>
-                    <Header text="React Hooks Blog" />
-                    <ChangeTheme theme={theme} setTheme={setTheme} />
-                    <br />
-                    <React.Suspense fallback={"Loading..."}>
-                      <UserBar />
-                    </React.Suspense>
-                    <br />
-                    {user && <CreatePost />}
-                    <br />
+                  <HeaderBar setTheme={setTheme} />
                     <hr />
                     {error && <b>{error}</b>}
                     <PostList />
