@@ -10,7 +10,7 @@ export default function CreatePost () {
   const [ content, setContent ] = useState('');
 
   const [ , createPost ] = useResource(({ title, content, author }) => ({
-    url: '.posts',
+    url: '/posts',
     method: 'post',
     data: { title, content, author }
   }))
