@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useResource } from "react-request-hook";
 import { StateContext } from "../contexts";
+import { useInput } from 'react-hookedup';
 
 export default function Register() {
   const { dispatch } = useContext(StateContext);
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
 
   const [user, register] = useResource((username, password) => ({
     url: "/users",
@@ -18,20 +19,25 @@ export default function Register() {
     }
 }, [user])
 
-  function handleUsername(evt) {
-    setUsername(evt.target.value);
-  }
+  // function handleUsername(evt) {
+  //   setUsername(evt.target.value);
+  // }
 
-  const [password, setPassword] = useState("");
-  const [passwordRepeat, setPasswordRepeat] = useState("");
+  const { value: username, bindToInput: bindUsername } = useInput('');
+  const { value: password, bindToInput: bindPassword } = useInput('');
+  const { value: passwordRepeat, bindToInput: bindPasswordRepeat } = useInput('');
 
-  function handlePassword(evt) {
-    setPassword(evt.target.value);
-  }
 
-  function handlePasswordRepeat(evt) {
-    setPasswordRepeat(evt.target.value);
-  }
+  // const [password, setPassword] = useState("");
+  // const [passwordRepeat, setPasswordRepeat] = useState("");
+
+  // function handlePassword(evt) {
+  //   setPassword(evt.target.value);
+  // }
+
+  // function handlePasswordRepeat(evt) {
+  //   setPasswordRepeat(evt.target.value);
+  // }
 
   return (
     <form
@@ -44,7 +50,7 @@ export default function Register() {
       <input
         type="text"
         value={username}
-        onChange={handleUsername}
+        {...bindUsername}
         name="register-username"
         id="register-username"
       />
@@ -52,7 +58,7 @@ export default function Register() {
       <input
         type="password"
         value={password}
-        onChange={handlePassword}
+        {...bindPassword}
         name="register-password"
         id="register-password"
       />
@@ -60,7 +66,7 @@ export default function Register() {
       <input
         type="password"
         value={passwordRepeat}
-        onChange={handlePasswordRepeat}
+        {...bindPasswordRepeat}
         name="register-password-repeat"
         id="register-password-repeat"
       />

@@ -41,6 +41,12 @@
       "content": "Dsada",
       "author": "will.sokolowski@gmail.com",
       "id": "FVn0N73"
+    },
+    {
+      "title": "dfdafsdaf",
+      "content": "fdsafads",
+      "author": "kik",
+      "id": "pepwZO-"
     }
   ],
   "users": [
@@ -58,6 +64,11 @@
       "username": "will.sokolowski@gmail.com",
       "password": "1",
       "id": 3
+    },
+    {
+      "username": "kik",
+      "password": "1",
+      "id": 4
     }
   ],
   "themes": [
