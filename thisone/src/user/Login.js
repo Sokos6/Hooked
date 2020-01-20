@@ -1,14 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useResource } from 'react-request-hook';
 import { StateContext } from '../contexts';
+import { useInput } from 'react-hookedup';
 
 export default function Login() {
   const { dispatch } = useContext(StateContext);
-  const [ username, setUsername ] = useState('');
-
+  const { value: username, bindToInput: bindUsername } = useInput('');
   const [ loginFailed, setLoginFailed ] = useState(false);
 
-  const [ password, setPassword ] = useState('');
+  const { value: password, bindToInput: bindPassword } = useInput('');
 
   // TODO Done to configire dummy server. Update to POST with HTTPS
   const [ user, login ] = useResource((username, password) => ({
@@ -30,21 +30,13 @@ export default function Login() {
     }
   }, [user])
 
-  function handleUsername(evt) {
-    setUsername(evt.target.value)
-  }
-
-  function handlePassword(evt) {
-    setPassword(evt.target.value)
-  }
-
   return (
     <>
     <form onSubmit={e => { e.preventDefault(); login(username, password) }} >
       <label htmlFor="login-username">Username:</label>
-      <input type="text" value={username} onChange={handleUsername} name="login-username" id="login-username" />
+      <input type="text" value={username} {...bindUsername} name="login-username" id="login-username" />
       <label htmlFor="login-password">Password:</label>
-      <input type="password" value={password} onChange={handlePassword} name="login-password" id="login-password" />
+      <input type="password" value={password} {...bindPassword} name="login-password" id="login-password" />
       <input type="submit" value="Login" disabled={username.length === 0} />
       {loginFailed && <span style={{color: 'red' }}>Invalid username or password</span>}
     </form>

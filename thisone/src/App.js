@@ -13,6 +13,7 @@ import appReducer from './reducers'
 import HeaderBar from './pages/HeaderBar';
 import HomePage from './pages/HomePage';
 import PostPage from './pages/PostPage';
+import FooterBar from './pages/FooterBar';
 
 export default function App () {
     const [ theme, setTheme ] = useState({
@@ -49,6 +50,7 @@ export default function App () {
                     {/* <PostPage id={'react-hooks'} /> */}
                     <View />
                 </div>
+                <FooterBar />
                 </Router>
             </ThemeContext.Provider>
         </StateContext.Provider>
