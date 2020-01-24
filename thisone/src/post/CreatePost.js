@@ -3,6 +3,7 @@ import {StateContext } from '../contexts';
 import { useResource } from 'react-request-hook';
 import { useNavigation } from 'react-navi';
 import { useInput } from 'react-hookedup';
+import useUndo from 'use-undo';
 
 export default function CreatePost () {
 
