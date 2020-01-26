@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import LessText from './LessText';
 import Stepped from './Stepped';
+import RandomList from './RandomList';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       towards completing it.`}
     maxLength={35}/>
     <Stepped />
+    <RandomList />
     </div>
   );
 }
