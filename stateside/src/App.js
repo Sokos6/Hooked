@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import LessText from './LessText';
+import Stepped from './Stepped';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       and just keep taking the next step
       towards completing it.`}
     maxLength={35}/>
+    <Stepped />
     </div>
   );
 }
