@@ -3,6 +3,7 @@ import './App.css';
 import LessText from './LessText';
 import Stepped from './Stepped';
 import RandomList from './RandomList';
+import LoginForm from './LoginForm';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
     maxLength={35}/>
     <Stepped />
     <RandomList />
+    <LoginForm />
     </div>
   );
 }
